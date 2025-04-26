@@ -1,0 +1,15 @@
+const TelegramBot = require('node-telegram-bot-api');
+const token = '7649901748:AAE-yAcdXAQKmIoO45ErEdVfdicBGD6dwKs';  // Замените на ваш токен
+const bot = new TelegramBot(token, { polling: true });
+
+bot.onText(/\/start/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, 'Привет! Я готов помочь вам с бронированием услуг.');
+});
+
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  // Обрабатываем сообщение от пользователя
+  // Например, если нужно отправить информацию о записи:
+  bot.sendMessage(chatId, 'Вы записаны на услугу: ' + msg.text);
+});
